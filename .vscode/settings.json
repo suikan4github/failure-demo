@@ -1,0 +1,27 @@
+{
+    "latex-workshop.intellisense.package.enabled": true,
+    // 生成ファイルを "out" ディレクトリに吐き出す
+    "latex-workshop.latex.outDir": "out",
+    // ビルドのレシピ
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk-process"
+            ]
+        },
+    ],
+    // ビルドのレシピに使われるパーツ
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-process",
+            "command": "latexmk",
+            "args": [
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ],
+    //-----------------------
+}
