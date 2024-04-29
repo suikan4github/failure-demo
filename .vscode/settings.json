@@ -1,8 +1,30 @@
 {
-    "latex-workshop.intellisense.package.enabled": true,
-    // 生成ファイルを "out" ディレクトリに吐き出す
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.snm",
+        "*.nav",
+        "*.dvi",
+        "*.synctex.gz"
+    ],
     "latex-workshop.latex.outDir": "out",
-    // ビルドのレシピ
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk",
@@ -11,7 +33,6 @@
             ]
         },
     ],
-    // ビルドのレシピに使われるパーツ
     "latex-workshop.latex.tools": [
         {
             "name": "latexmk-process",
@@ -24,4 +45,5 @@
         }
     ],
     //-----------------------
+    "latex-workshop.view.outline.commands": [],
 }
