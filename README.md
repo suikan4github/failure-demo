@@ -2,7 +2,7 @@
 This project demonstrate the error from bi_dec() macro when you
 split a line inside _bi_dec()
 
-# details
+## details
 The bi_decl() macro cause an error whe it is divided into two lines inside it's parentheses before its parameter.
 
 In the following example, bi_decl is located at line 22, and it has line break inside parentheses. 
@@ -28,6 +28,17 @@ Workaround for this problem is one of :
 - Make sure everything inside parentheses of bi_decl are inside one line. 
 - Place line break inside nested content of line bi_dec().
 
+## How to reproduce
+Run following commands.
+```sh
+mkdir build
+cd build
+cmake ..
+cmake --build .
 
-# SDK version
-Raspberry Pi Pico SDK [version 2.0.0](https://github.com/raspberrypi/pico-sdk/releases/tag/2.0.0).
+```
+
+## Test condition
+- Raspberry Pi Pico SDK [version 2.0.0](https://github.com/raspberrypi/pico-sdk/releases/tag/2.0.0).
+- Ubuntu 24.04 (WSL)
+- arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009
