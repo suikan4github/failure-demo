@@ -1,11 +1,11 @@
-# Raspberry Pi Pico SDK _bi_dec() error demo
-This project demonstrate the error from bi_dec() macro when you
-split a line inside _bi_dec()
+# Raspberry Pi Pico SDK bi_decl() error demo
+This project demonstrate the error from bi_decl() macro when you
+split a line inside bi_decl()
 
 ## details
 The bi_decl() macro cause an error whe it is divided into two lines inside it's parentheses before its parameter.
 
-In the following example, bi_decl is located at line 22, and it has line break inside parentheses. 
+In the following example, bi_decl() is located at line 22, and it has line break inside parentheses. 
 ```cpp
   // Splitting line inside bi_decl() will cause compile error. 
   bi_decl(
@@ -25,8 +25,8 @@ In the following example, bi_decl is located at line 22, and it has line break i
 ```
 
 Workaround for this problem is one of : 
-- Make sure everything inside parentheses of bi_decl are inside one line. 
-- Place line break inside nested content of line bi_dec().
+- Make sure everything inside parentheses of bi_decl() are inside one line. 
+- Place line break inside nested content of line bi_decl().
 
 ## How to reproduce
 Run following commands.
