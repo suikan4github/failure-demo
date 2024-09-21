@@ -1,5 +1,3 @@
-#include "getduration.h"
-#include "initgpio.h"
 #include "pico/binary_info.h"
 #include "pico/stdlib.h"
 
@@ -18,6 +16,14 @@ int main() {
     sleep_ms(duration);
   }
 
-  __bi_decl(
-      __url("https://github.com/suikan4github/failure-demo/tree/rpp_bi_decl"));
+  // clang-format off
+#if 1
+  // Splitting line inside bi_decl() will cause compile error. 
+  bi_decl(
+    bi_program_url("https://github.com/suikan4github/failure-demo/tree/rpp_bi_decl"));
+#else
+  // As single line, no error occurs.  
+  bi_decl(bi_program_url("https://github.com/suikan4github/failure-demo/tree/rpp_bi_decl"));
+#endif
+  // clang-format on
 }
