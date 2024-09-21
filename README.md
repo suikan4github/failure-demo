@@ -1,6 +1,5 @@
-# failure-demo
-Warehouse repository of the demonstration of failures. 
+# Raspberry Pi Pico SDK _bi_dec() error demo
+This project demonstrate the error from _bi_dec() macro when you
+split a line inside _bi_dec()
 
 # details
-The main branch of this repository is just an placeholder. 
-See the each branch for details of the each problem. 

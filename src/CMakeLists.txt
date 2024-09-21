@@ -1,18 +1,15 @@
-# Project Parameters.
-# File name of main()
-set(MAIN_FILE_PATTERN ".*/main.cpp$")
+# blinkプログラムがmain.cとinit.cからなることを宣言する
+# add_executable()で宣言した名前(blink)は実行ファイルの名前
+# になる。
+add_executable(blink
+        main.c
+        )
 
-#----------------------------------------------------------------------------
-# Do not edit the lines below 
+# blinkプログラムがpico_stdlibライブラリを使うことを宣言する。
+target_link_libraries(blink pico_stdlib)
 
-# List up all source files including main.cpp
-file(GLOB ALL_SRCS "*.cpp")
-
-add_executable(${EXECUTABLE_NAME} ${ALL_SRCS})
-
-    # Add pthread library to support std::thread
-    # In the case of MSVC, this is not required.
-    if (NOT(MSVC))
-        target_link_libraries(${EXECUTABLE_NAME} "pthread")
-    endif(NOT(MSVC))
-
+# pico-sdkが用意した関数
+# blinkプログラムからブートローダ形式のファイルを作る
+# ブートローダーファイル(blink.uf2)はbuildディレクトリに
+# 出力される
+pico_add_extra_outputs(blink)

@@ -1,49 +1,50 @@
-# CMake 3.15 or newer is requried because of CMP0091.
-# ver 3.22 is the one in Ubuntu 22.04
-cmake_minimum_required(VERSION "3.22")
+#[[
+Copyright 2020 (c) 2020 Raspberry Pi (Trading) Ltd.
 
-# The CMake compatibility flag for MSVC runtime library flag. New in 3.15.  Must set "NEW"
-cmake_policy(SET CMP0091 "NEW")   
-# Enforce the  /MT or /MTd as link option for MS Visual Studio C++
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+following conditions are met:
 
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+   disclaimer.
 
-#----------------------------------------------------------------------------
-# Parameters inside project
-project("template_application")
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided with the distribution.
 
-# Compiler option
-# GoogleTest requirest C++11 or later
-set(CMAKE_CXX_STANDARD "17")
-set(CMAKE_CXX_STANDARD_REQUIRED "ON")
-set(CMAKE_CXX_EXTENSIONS "OFF")
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written permission.
 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+]]
 
-#----------------------------------------------------------------------------
-# Do not edit the lines below 
+# The first part of the CMakeLists.txt which download SDK automatically. 
 
-# Executable name
-set(EXECUTABLE_NAME ${PROJECT_NAME})
+# The original of this file can be found at : 
+# https://github.com/raspberrypi/pico-sdk/blob/master/README.md
 
-# Test executable and library name
-set(TEST_EXECUTABLE_NAME "test_${PROJECT_NAME}")
-set(TEST_LIBRARY_NAME "${PROJECT_NAME}_for_test")
+cmake_minimum_required(VERSION 3.13)
 
-# Enable CTest
-# This command automatically run the enable_test() command.
-# And the CMake specification requires to place the enable_test() at the
-# root of the project, to run the ctest correctly. 
-# Thus, place this command at the root of project.
-include("CTest")
+# initialize pico-sdk from GIT
+# (note this can come from environment, CMake cache etc)
+set(PICO_SDK_FETCH_FROM_GIT on)
 
-# Using thread inside application
-find_package("Threads" REQUIRED)
+# pico_sdk_import.cmake is a single file copied from this SDK
+# note: this must happen before project()
+include(pico_sdk_import.cmake)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include("CPack")
+# プロジェクト名の宣言
+project("my_project")
 
-# Subdirectories
+# この関数はプロジェクト名を宣言してから呼ぶ
+pico_sdk_init()
+
+# --------------------------------------------------
+# 以下が例題ごとに変わる
+
+# srcサブディレクトリをプロジェクトに加える
 add_subdirectory("src")
-add_subdirectory("test")
-
